@@ -1,55 +1,62 @@
 import React from 'react'
 import { useSpring, animated } from 'react-spring'
-import { Scatter } from 'react-chartjs-2'
 import Gui from './Gui'
-import { initialConfig, color } from './utils'
-
+import {
+  initialConfig,
+  color,
+  getLabelFromConfig,
+  springConfigString,
+  getPerf,
+} from './utils'
+import Chart from './Chart'
 import 'react-dat-gui/build/react-dat-gui.css'
 import './styles.css'
 
 export default function Performance() {
-  const [datasets, setDatasets] = React.useState([])
+  const [data, setData] = React.useState([])
   const [config, setConfig] = React.useState(initialConfig)
 
-  const { method, tension, mass, friction } = config
+  const { method } = config
 
-  const bufferData = React.useRef([])
-  const [{ y }, set] = useSpring(() => ({
-    y: -250,
-  }))
+  const [{ x }, set] = useSpring(() => ({ x: 0 }))
 
   const runSpring = () => {
-    bufferData.current = []
+    const bufferData = []
+    const bufferPerf = []
     set({
-      from: { y: -250 },
+      from: { x: 0 },
       reset: true,
-      y: 250,
+      x: 500,
       config,
-      onFrame: () =>
-        bufferData.current.push({ x: y.elapsedTime, y: y.getValue() }),
+      onFrame: () => {
+        bufferData.push({ x: x.elapsedTime, y: x.getValue() })
+        bufferPerf.push(x.performance)
+      },
       onRest: () => {
-        console.log(y.performance)
-        const m =
-          method +
-          (method === 'euler'
-            ? ` (${config.dt}${config.dt > 20 ? '/ω' : 'ms'})`
-            : '')
         const c = color(method === 'euler')
-        setDatasets(d => {
-          return [
-            ...d,
-            {
-              label: `${m} [${[tension, friction, mass].join(',')}]`,
-              backgroundColor: c,
-              borderColor: c,
-              pointRadius: 2,
-              pointStyle: 'cross',
-              data: [...bufferData.current],
-            },
-          ]
+        const title = springConfigString(config)
+        const label = getLabelFromConfig(config)
+        const datasets = {
+          label,
+          backgroundColor: c,
+          borderColor: c,
+          pointRadius: 2,
+          data: bufferData,
+        }
+
+        const perf = getPerf(label, bufferPerf)
+
+        setData(d => {
+          if (d.length > 0 && d[d.length - 1].title === title) {
+            d[d.length - 1].datasets.push(datasets)
+            d[d.length - 1].perfs.push(perf)
+          } else {
+            d.push({ title, datasets: [datasets], perfs: [perf] })
+          }
+          return [...d]
         })
         setTimeout(
-          () => set({ y: -250, immediate: true, onFrame: null, onRest: null }),
+          () => set({ x: 0, immediate: true, onFrame: null, onRest: null }),
           1000
         )
       },
@@ -58,34 +65,14 @@ export default function Performance() {
 
   return (
     <div className="performance">
+      <Gui config={config} onUpdate={setConfig} />
       <div className="animation">
-        <animated.div onClick={runSpring} style={{ y }} />
+        <animated.div onClick={runSpring} style={{ x }} />
       </div>
       <div className="chart">
-        <Gui config={config} onUpdate={setConfig} />
-        <Scatter
-          data={{ datasets }}
-          options={{
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    suggestedMin: -300,
-                    suggestedMax: 300,
-                  },
-                },
-              ],
-              xAxes: [
-                {
-                  ticks: {
-                    suggestedMin: 0,
-                    suggestedMax: 1000,
-                  },
-                },
-              ],
-            },
-          }}
-        />
+        {data.map(({ datasets, perfs, title }, i) => (
+          <Chart key={i} title={title} datasets={datasets} perfs={perfs} />
+        ))}
       </div>
     </div>
   )

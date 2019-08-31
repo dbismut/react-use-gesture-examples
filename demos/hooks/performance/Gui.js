@@ -13,7 +13,7 @@ export default function Gui({ config, onUpdate }) {
         {config.method === 'euler' ? (
           <DatNumber
             path="dt"
-            label={`Eulert Δt=${config.dt}${config.dt > 20 ? '/ω' : 'ms'}`}
+            label={`Euler Δt=${config.dt}${config.dt > 20 ? '/ω' : 'ms'}`}
             min={1}
             max={2000}
             step={1}
