@@ -6,8 +6,8 @@ import examples from './components/examples-hooks'
 // import examples from './components/examples-tests'
 import './styles.css'
 
-const DEBUG = false
-//const DEBUG = 'tree'
+//const DEBUG = false
+const DEBUG = 'performance'
 
 ReactDOM.render(
   <DemoGrid fullscreen={!!DEBUG}>

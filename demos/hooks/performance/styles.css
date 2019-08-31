@@ -1,0 +1,39 @@
+.performance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  height: 100%;
+}
+
+.performance > div {
+  width: 50%;
+  flex: 1;
+  height: 100%;
+  padding: 20px;
+}
+
+.animation {
+  max-width: 500px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.performance > .animation > div {
+  width: 80px;
+  height: 80px;
+  background: hotpink;
+  border-radius: 16px;
+}
+
+.performance > .chart {
+  padding-top: 200px;
+}
+
+.performance > .chart > .react-dat-gui {
+  top: auto;
+  right: auto;
+  transform: translateY(-200px);
+}
