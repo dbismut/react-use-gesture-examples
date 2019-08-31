@@ -25,7 +25,7 @@
 
 .performance > .chart > div {
   padding: 20px 10px;
-  width: calc(100% / 3);
+  width: 50%;
 }
 
 .performance > .chart > div > h3 {
@@ -39,25 +39,4 @@
   height: 80px;
   background: hotpink;
   border-radius: 16px;
-}
-
-.performance table {
-  border-spacing: 0;
-  border: 1px solid black;
-}
-
-.performance tr:last-child td {
-  border-bottom: 0;
-}
-
-.performance th,
-.performance td {
-  margin: 0;
-  padding: 0.5rem;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-}
-
-.performance td:last-child {
-  border-right: 0;
 }
