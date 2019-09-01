@@ -43,4 +43,5 @@
 
 .performance .ghost {
   pointer-events: none;
+  transition: transform 150ms linear;
 }
