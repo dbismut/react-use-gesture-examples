@@ -8,12 +8,14 @@ export default function Gui({ config, onUpdate }) {
         <DatSelect
           path="method"
           label="Solution"
-          options={['euler', 'analytical']}
+          options={['euler', 'verlet', 'analytical']}
         />
-        {config.method === 'euler' ? (
+        {config.method !== 'analytical' ? (
           <DatNumber
             path="dt"
-            label={`Euler Δt=${config.dt}${config.dt > 20 ? '/ω' : 'ms'}`}
+            label={`${config.method} Δt=${config.dt}${
+              config.dt > 20 ? '/ω' : 'ms'
+            }`}
             min={1}
             max={2000}
             step={1}
@@ -22,7 +24,7 @@ export default function Gui({ config, onUpdate }) {
           <i />
         )}
       </DatFolder>
-      <DatNumber path="tension" label="Tension" min={10} max={200} step={1} />
+      <DatNumber path="tension" label="Tension" min={0} max={200} step={10} />
       <DatNumber path="friction" label="Friction" min={1} max={200} step={1} />
       <DatNumber path="mass" label="Mass" min={1} max={10} step={1} />
     </DatGui>

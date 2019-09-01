@@ -1,14 +1,14 @@
 import React from 'react'
 import { Scatter } from 'react-chartjs-2'
 
-export default function Chart({ title, datasets, perfs, onHover }) {
+export default function Chart({ index, title, datasets, perfs, onHover }) {
   return (
     <div>
       <h3>{title}</h3>
       <Scatter
         data={{ datasets }}
         options={{
-          onHover: (_, data) => onHover(data),
+          onHover: (_, data) => onHover(index, data),
           tooltips: { mode: 'index', axis: 'x', intersect: false },
           hover: { mode: 'index', axis: 'x', intersect: false },
           scales: {

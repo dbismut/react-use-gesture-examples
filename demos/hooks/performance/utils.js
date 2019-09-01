@@ -19,11 +19,21 @@ export const initialConfig = {
   mass: 1,
 }
 
-export const springConfigString = ({ tension, friction, mass }) =>
-  `tension: ${tension}, friction: ${friction}, mass: ${mass}`
+const getOmega = ({ tension, mass }) => Math.sqrt(tension / mass)
 
-export const getLabelFromConfig = ({ method, dt }) =>
-  `${method + (method === 'euler' ? ` (${dt}${dt > 20 ? '/ω' : 'ms'})` : '')}`
+export const springConfigString = ({ tension, friction, mass }) =>
+  `tension: ${tension}, friction: ${friction}, mass: ${mass} (ω=${getOmega({
+    tension,
+    mass,
+  }).toFixed(2)})`
+
+export const getLabelFromConfig = ({ method, dt, tension, mass }) =>
+  `${method +
+    (method === 'euler'
+      ? ` (${dt}${
+          dt > 20 ? `/ω - ${~~(dt / getOmega({ tension, mass }))}ms` : 'ms'
+        })`
+      : '')}`
 
 export const getPerf = (label, data) => {
   return {
