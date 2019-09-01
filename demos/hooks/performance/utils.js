@@ -1,12 +1,15 @@
 import randomcolor from 'randomcolor'
 import { sum, mean, max } from 'lodash-es'
 
-export const color = flag =>
-  randomcolor({
-    luminosity: flag ? 'bright' : 'dark',
-    format: 'rgba',
-    opacity: 0.8,
-  })
+const colors = {}
+
+export const color = label => {
+  colors[label] = colors[label]
+    ? colors[label]
+    : randomcolor({ luminosity: 'bright', format: 'rgba', opacity: 0.8 })
+
+  return colors[label]
+}
 
 export const initialConfig = {
   method: 'euler',

@@ -33,9 +33,9 @@ export default function Performance() {
         bufferPerf.push(x.performance)
       },
       onRest: () => {
-        const c = color(method === 'euler')
         const title = springConfigString(config)
         const label = getLabelFromConfig(config)
+        const c = method === 'euler' ? color(label) : 'blue'
         const datasets = {
           label,
           backgroundColor: c,
