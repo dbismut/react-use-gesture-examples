@@ -64,14 +64,17 @@ export default function Performance() {
     })
   }
 
-  const onHover = React.useCallback((index, points) => {
-    const g = points.map(({ _options, _index, _datasetIndex }) => ({
-      x: data[index].datasets[_datasetIndex].data[_index].y,
-      color: _options.backgroundColor,
-      index: _datasetIndex,
-    }))
-    setGhosts(g)
-  }, [])
+  const onHover = React.useCallback(
+    (index, points) => {
+      const g = points.map(({ _options, _index, _datasetIndex }) => ({
+        x: data[index].datasets[_datasetIndex].data[_index].y,
+        color: _options.backgroundColor,
+        index: _datasetIndex,
+      }))
+      setGhosts(g)
+    },
+    [data]
+  )
 
   return (
     <div className="performance">

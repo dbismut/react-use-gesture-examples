@@ -8,7 +8,7 @@ export default function Gui({ config, onUpdate }) {
         <DatSelect
           path="method"
           label="Solution"
-          options={['euler', 'verlet', 'analytical']}
+          options={['euler', 'analytical']}
         />
         {config.method !== 'analytical' ? (
           <DatNumber
