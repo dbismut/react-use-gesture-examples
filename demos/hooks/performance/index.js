@@ -15,6 +15,7 @@ import './styles.css'
 export default function Performance() {
   const [data, setData] = React.useState([])
   const [config, setConfig] = React.useState(initialConfig)
+  const [ghosts, setGhosts] = React.useState([])
 
   const { method } = config
 
@@ -35,7 +36,7 @@ export default function Performance() {
       onRest: () => {
         const title = springConfigString(config)
         const label = getLabelFromConfig(config)
-        const c = method === 'euler' ? color(label) : 'blue'
+        const c = method === 'euler' ? color(label) : '#0011ffbd'
         const datasets = {
           label,
           backgroundColor: c,
@@ -63,15 +64,36 @@ export default function Performance() {
     })
   }
 
+  const onHover = React.useCallback(points => {
+    const g = points.map(({ _model, _options }) => ({
+      x: _model.x,
+      color: _options.backgroundColor,
+    }))
+    setGhosts(g)
+  }, [])
+
   return (
     <div className="performance">
       <Gui config={config} onUpdate={setConfig} />
       <div className="animation">
         <animated.div onClick={runSpring} style={{ x }} />
+        {ghosts.map(({ x, color }, i) => (
+          <div
+            className="ghost"
+            key={i}
+            style={{ transform: `translateX(${x}px)`, backgroundColor: color }}
+          />
+        ))}
       </div>
       <div className="chart">
         {data.map(({ datasets, perfs, title }, i) => (
-          <Chart key={i} title={title} datasets={datasets} perfs={perfs} />
+          <Chart
+            key={i}
+            title={title}
+            datasets={datasets}
+            perfs={perfs}
+            onHover={onHover}
+          />
         ))}
       </div>
     </div>

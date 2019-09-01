@@ -6,7 +6,7 @@ const colors = {}
 export const color = label => {
   colors[label] = colors[label]
     ? colors[label]
-    : randomcolor({ luminosity: 'bright', format: 'rgba', opacity: 0.8 })
+    : randomcolor({ luminosity: 'dark', format: 'rgba', opacity: 0.8 })
 
   return colors[label]
 }
