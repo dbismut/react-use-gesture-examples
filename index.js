@@ -6,7 +6,7 @@ import examples from './components/examples-hooks'
 // import examples from './components/examples-tests'
 import './styles.css'
 
-//const DEBUG = false
+// const DEBUG = false
 const DEBUG = 'performance'
 
 ReactDOM.render(

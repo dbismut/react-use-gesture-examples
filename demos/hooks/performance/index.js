@@ -36,11 +36,12 @@ export default function Performance() {
       onRest: () => {
         const title = springConfigString(config)
         const label = getLabelFromConfig(config)
-        const c = method !== 'analytical' ? color(label) : '#0011ff44'
+        const c =
+          method !== 'analytical' ? color(config.method + config.dt) : '#0011ff'
         const datasets = {
           label,
           backgroundColor: c,
-          borderColor: c,
+          pointBorderWidth: 0,
           pointRadius: 2,
           data: bufferData,
         }
@@ -68,7 +69,7 @@ export default function Performance() {
     (index, points) => {
       const g = points.map(({ _options, _index, _datasetIndex }) => ({
         x: data[index].datasets[_datasetIndex].data[_index].y,
-        color: _options.backgroundColor,
+        color: _options.backgroundColor + '44',
         index: _datasetIndex,
       }))
       setGhosts(g)

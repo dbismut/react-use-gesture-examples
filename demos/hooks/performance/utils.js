@@ -6,14 +6,14 @@ const colors = {}
 export const color = label => {
   colors[label] = colors[label]
     ? colors[label]
-    : randomcolor({ luminosity: 'dark', format: 'rgba', opacity: 0.8 })
+    : randomcolor({ luminosity: 'dark' })
 
   return colors[label]
 }
 
 export const initialConfig = {
   method: 'euler',
-  dt: 100,
+  dt: 50,
   tension: 120,
   friction: 12,
   mass: 1,
@@ -29,7 +29,7 @@ export const springConfigString = ({ tension, friction, mass }) =>
 
 export const getLabelFromConfig = ({ method, dt, tension, mass }) =>
   `${method +
-    (method === 'euler'
+    (method !== 'analytical'
       ? ` (${dt}${
           dt > 20 ? `/ω - ${~~(dt / getOmega({ tension, mass }))}ms` : 'ms'
         })`
