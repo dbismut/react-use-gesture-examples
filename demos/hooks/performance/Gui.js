@@ -12,9 +12,9 @@ export default function Gui({ config, onUpdate }) {
         />
         {config.method !== 'analytical' ? (
           <DatNumber
-            path="dt"
-            label={`${config.method} Δt=${config.dt}${
-              config.dt > 20 ? '/ω' : 'ms'
+            path="step"
+            label={`${config.method} Δt=${
+              config.step > 20 ? `${config.step / 1000}/ω` : `${config.step}ms`
             }`}
             min={1}
             max={2000}

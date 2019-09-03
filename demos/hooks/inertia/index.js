@@ -21,7 +21,7 @@ export default function Inertia() {
       set({
         y: velocity > 0 ? max : min,
         onFrame: () => {}, // <-- this is annoying :)
-        config: { velocity: velocity * 3 },
+        config: { velocity: velocity },
       })
     },
     [set]
