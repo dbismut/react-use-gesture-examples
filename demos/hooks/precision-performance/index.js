@@ -10,18 +10,19 @@ import {
 } from './utils'
 import Chart from './Chart'
 import 'react-dat-gui/build/react-dat-gui.css'
+import { useDrag } from 'react-use-gesture'
 import './styles.css'
 
 export default function Performance() {
   const [data, setData] = React.useState([])
   const [config, setConfig] = React.useState(initialConfig)
   const [ghosts, setGhosts] = React.useState([])
-
-  const { method } = config
+  const isDragging = React.useRef(false)
 
   const [{ x }, set] = useSpring(() => ({ x: 0 }))
 
   const runSpring = () => {
+    if (isDragging.current) return // prevents bench to run when spring is dragged
     const bufferData = []
     const bufferPerf = []
     set({
@@ -76,11 +77,17 @@ export default function Performance() {
     [data]
   )
 
+  const bind = useDrag(({ down, movement: [x] }) => {
+    set({ x: down ? x : 0, config })
+    isDragging.current = x !== 0
+    if (!down) setTimeout(() => (isDragging.current = false))
+  })
+
   return (
     <div className="precision-performance">
       <Gui config={config} onUpdate={setConfig} />
       <div className="animation">
-        <animated.div onClick={runSpring} style={{ x }} />
+        <animated.div {...bind()} onClick={runSpring} style={{ x }} />
         {ghosts.map(({ x, color, index }) => (
           <div
             className="ghost"
