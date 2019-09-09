@@ -1,0 +1,17 @@
+.hundreds {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  height: 100%;
+}
+
+.hundreds > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background: hotpink;
+  border-radius: 16px;
+}

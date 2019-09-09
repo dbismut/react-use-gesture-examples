@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui;
+  cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png')
+      39 39,
+    auto;
+  line-height: 1.6;
+}
+
+#root {
+  position: relative;
+  width: 100%;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.title {
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin: 0 auto;
+  line-height: 1.2;
+}
+
+h1,
+h2 {
+  margin: 12px 0;
+}
+
+h3 {
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  opacity: 0.6;
+  margin: 0;
+}
+
+.title > * {
+  max-width: 60vw;
+}
+
+@media screen and (min-width: 641px) {
+  .title > * {
+    max-width: 30vw;
+  }
+}

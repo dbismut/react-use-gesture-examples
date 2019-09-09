@@ -1,4 +1,4 @@
-.performance {
+.precision-performance {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.performance > .chart {
+.precision-performance > .chart {
   background: #fff;
   padding: 40px 0;
   flex: 1;
@@ -22,18 +22,18 @@
   font-size: 12px;
 }
 
-.performance > .chart > div {
+.precision-performance > .chart > div {
   padding: 20px 10px;
   width: 50%;
 }
 
-.performance > .chart > div > h3 {
+.precision-performance > .chart > div > h3 {
   margin: 0;
   margin-bottom: 10px;
   font-size: 1em;
 }
 
-.performance > .animation > div {
+.precision-performance > .animation > div {
   position: absolute;
   width: 80px;
   height: 80px;
@@ -41,7 +41,7 @@
   border-radius: 16px;
 }
 
-.performance .ghost {
+.precision-performance .ghost {
   pointer-events: none;
   transition: transform 150ms linear;
 }

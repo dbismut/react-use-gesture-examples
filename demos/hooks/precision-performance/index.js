@@ -36,8 +36,7 @@ export default function Performance() {
       onRest: () => {
         const title = springConfigString(config)
         const label = getLabelFromConfig(config)
-        const c =
-          method !== 'analytical' ? color(config.method + config.dt) : '#0011ff'
+        const c = color(config.method + config.step)
         const datasets = {
           label,
           backgroundColor: c,
@@ -78,7 +77,7 @@ export default function Performance() {
   )
 
   return (
-    <div className="performance">
+    <div className="precision-performance">
       <Gui config={config} onUpdate={setConfig} />
       <div className="animation">
         <animated.div onClick={runSpring} style={{ x }} />

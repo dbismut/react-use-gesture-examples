@@ -7,7 +7,7 @@ import examples from './components/examples-hooks'
 import './styles.css'
 
 // const DEBUG = false
-const DEBUG = 'performance'
+const DEBUG = 'precision'
 
 ReactDOM.render(
   <DemoGrid fullscreen={!!DEBUG}>

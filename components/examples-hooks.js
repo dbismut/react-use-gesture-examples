@@ -85,8 +85,23 @@ return <animated.div style={{ transform }} children="Slide">`,
     tags: ['useSprings'],
   },
   {
-    name: 'hooks/performance',
-    title: 'Performance',
+    name: 'hooks/precision-performance',
+    title: 'Precision Performance',
+    tags: ['useSprings'],
+  },
+  {
+    name: 'hooks/hundreds',
+    title: 'Hundreds',
+    tags: ['useSprings'],
+  },
+  {
+    name: 'hooks/appstore',
+    title: 'App Store',
+    tags: ['useSprings'],
+  },
+  {
+    name: 'hooks/super-simple',
+    title: 'Super simple',
     tags: ['useSprings'],
   },
   {

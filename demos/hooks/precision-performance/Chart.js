@@ -20,7 +20,7 @@ export default function Chart({ index, title, datasets, perfs, onHover }) {
       <div style={{ marginTop: 10 }}>
         {perfs.map(({ label, sum, mean, max, cycles }) => (
           <div key={label}>
-            <b>{label}: </b>sum (first 600) {sum.toFixed(3)}, mean{' '}
+            <b>{label}: </b>sum (first 30) {sum.toFixed(3)}, mean{' '}
             {mean.toFixed(4)}, max {max.toFixed(4)}, cycles: {cycles}
           </div>
         ))}

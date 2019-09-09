@@ -15,13 +15,13 @@ export default function MultiStageTransition() {
       color: '#8fa5b6',
     },
     enter: [
-      { opacity: 1, height: 50, innerHeight: 50 },
+      { opacity: 1, height: 50, innerHeight: 50, config: { duration: 30000 } },
       { transform: 'perspective(600px) rotateX(180deg)', color: '#28d79f' },
       { transform: 'perspective(600px) rotateX(0deg)' },
     ],
     leave: [
-      { color: '#c23369' },
-      { innerHeight: 0 },
+      { color: '#c23369', config: { duration: 30000 } },
+      { innerHeight: 0, config: { duration: 30000 } },
       { opacity: 0, height: 0 },
     ],
     update: { color: '#28b4d7' },
@@ -34,10 +34,10 @@ export default function MultiStageTransition() {
     ref.current.push(
       setTimeout(() => set(['Apples', 'Oranges', 'Kiwis']), 2000)
     )
-    ref.current.push(setTimeout(() => set(['Apples', 'Kiwis']), 5000))
-    ref.current.push(
-      setTimeout(() => set(['Apples', 'Bananas', 'Kiwis']), 8000)
-    )
+    // ref.current.push(setTimeout(() => set(['Apples', 'Kiwis']), 5000))
+    // ref.current.push(
+    //   setTimeout(() => set(['Apples', 'Bananas', 'Kiwis']), 8000)
+    // )
   }, [])
 
   useEffect(() => void reset(), [])
@@ -52,6 +52,7 @@ export default function MultiStageTransition() {
             style={rest}
             onClick={reset}>
             <animated.div style={{ overflow: 'hidden', height: innerHeight }}>
+              {console.log(key)}
               {item}
             </animated.div>
           </animated.div>

@@ -53,6 +53,7 @@ module.exports = mode => {
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
     },
     module: {
+      noParse: [/benchmark/],
       rules: [
         {
           test: /\.scss$/,
