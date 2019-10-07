@@ -7,7 +7,7 @@ import examples from './components/examples-hooks'
 import './styles.css'
 
 // const DEBUG = false
-const DEBUG = 'precision'
+const DEBUG = 'list-reordering'
 
 ReactDOM.render(
   <DemoGrid fullscreen={!!DEBUG}>

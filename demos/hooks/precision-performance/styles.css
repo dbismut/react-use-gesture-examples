@@ -24,7 +24,13 @@
 
 .precision-performance > .chart > div {
   padding: 20px 10px;
-  width: 50%;
+  width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .precision-performance > .chart > div {
+    width: 50%;
+  }
 }
 
 .precision-performance > .chart > div > h3 {
