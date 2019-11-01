@@ -5,6 +5,7 @@
   display: flex;
   align-items: stretch;
   font-size: 3em;
+  touch-action: pinch-zoom;
 }
 
 .wheel > div {
