@@ -3,4 +3,5 @@
   height: 80px;
   background: hotpink;
   border-radius: 16px;
+  touch-action: none;
 }

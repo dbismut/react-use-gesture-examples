@@ -49,7 +49,7 @@ export default function Card() {
         !hovering && set({ rotateX: 0, rotateY: 0, scale: 1 }),
       onWheel: ({ offset: [, y] }) => setWheel({ wheelY: y }),
     },
-    { domTarget, event: { passive: false } }
+    { domTarget, pointerEvents: true }
   )
 
   React.useEffect(bind, [bind])
@@ -80,11 +80,11 @@ export default function Card() {
           rotateY,
           rotateZ,
         }}>
-        <animated.div style={{ transform: wheelY.to(wheel) }}>
+        {/* <animated.div style={{ transform: wheelY.to(wheel) }}>
           {imgs.map((img, i) => (
             <div key={i} style={{ backgroundImage: `url(${img})` }} />
           ))}
-        </animated.div>
+        </animated.div> */}
       </animated.div>
     </div>
   )

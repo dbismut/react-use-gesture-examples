@@ -1,4 +1,4 @@
-.multi-gesture-card.flex-content > div {
+.multi-gesture-card > div {
   position: relative;
   width: 30vw;
   height: 30vw;
@@ -10,6 +10,7 @@
   border: 10px solid white;
   cursor: grab;
   overflow: hidden;
+  touch-action: none;
 }
 
 .multi-gesture-card > div > div {

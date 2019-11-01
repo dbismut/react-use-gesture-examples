@@ -12,7 +12,7 @@ const Container = styled('div')`
   height: ${props => (props.fullscreen ? '100%' : 'auto')};
   display: grid;
   grid-gap: 40px;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   padding: ${props => (props.padding !== void 0 ? props.padding : 40)}px;
   user-select: none;
 

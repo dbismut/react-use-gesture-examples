@@ -1,0 +1,15 @@
+html,
+body,
+.three {
+  overflow: hidden;
+}
+
+.three {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  background-color: #272727;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

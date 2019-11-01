@@ -5,8 +5,8 @@ import Demo from './components/Demo'
 import examples from './components/examples-hooks'
 import './styles.css'
 
-const DEBUG = false
-// const DEBUG = 'wheel'
+// const DEBUG = false
+const DEBUG = 'wheel'
 
 ReactDOM.render(
   <DemoGrid fullscreen={!!DEBUG}>
