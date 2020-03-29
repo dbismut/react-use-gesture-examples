@@ -61,6 +61,7 @@
   "dependencies": {
     "@babel/runtime": "^7.3.1",
     "@researchgate/react-intersection-observer": "^0.7.4",
+    "@tim-soft/react-dat-gui": "^4.0.11",
     "camelize": "^1.0.0",
     "decamelize": "^3.2.0",
     "flubber": "^0.4.2",
@@ -75,8 +76,9 @@
     "react-dom": "^16.11.0",
     "react-feather": "^1.1.6",
     "react-loadable": "^5.5.0",
-    "react-spring": "^9.0.0-beta.34",
+    "react-spring": "^9.0.0-canary.808.14.192785c",
     "react-three-fiber": "^3.0.3",
+    "react-toastify": "^5.4.1",
     "react-use-gesture": "^5.2.3",
     "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^4.1.3",

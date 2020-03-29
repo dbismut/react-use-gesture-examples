@@ -1,28 +1,60 @@
 import React from 'react'
-import { useSpring, animated, interpolate } from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
-import { clamp } from 'lodash'
 import './styles.css'
 
-const boundaries = [-100, 100, 100, -100]
-
-export default function Boundaries() {
+export default function Threshold({ setActive }) {
   const [{ x, y }, set] = useSpring(() => ({ x: 0, y: 0 }))
+  const [props, setL] = useSpring(() => ({ x: 0, y: 0, opacity: 0 }))
+
+  const [movX, setMovX] = React.useState(false)
+  const [movY, setMovY] = React.useState(false)
+
   const bind = useDrag(
-    ({ movement: [mx, my], memo = [x.getValue(), y.getValue()] }) => {
-      const [top, right, bottom, left] = boundaries
-      set({
-        x: clamp(memo[0] + mx, left, right),
-        y: clamp(memo[1] + my, top, bottom),
-      })
-      return memo
-    }
+    ({ down, movement: [mx, my] }) => {
+      set({ x: down ? mx : 0, y: down ? my : 0 })
+    },
+    { threshold: 100 }
   )
+
+  const bindL = useDrag(({ down, movement: [mx, my] }) => {
+    setActive && setActive(down)
+    console.log(down)
+    if (!down) {
+      setMovX(false)
+      setMovY(false)
+      setL({ x: 0, y: 0, opacity: 0 })
+      return
+    }
+    setL({ opacity: 1 })
+    if (Math.abs(mx) >= 100) setMovX(true)
+    else setL({ x: mx })
+    if (Math.abs(my) >= 100) setMovY(true)
+    else setL({ y: my })
+  })
+
+  const th = index => v => {
+    const displ = Math.floor(100 - Math.abs(v))
+    const axis = index === 0 ? 'x: ' : 'y: '
+    const m = index === 0 ? movX : movY
+    if (displ > 0 && !m) return axis + `${displ} px`
+    return axis + 'moves!'
+  }
+
   return (
-    <div className="flex-content boundaries">
-      <div>
-        <animated.div {...bind()} style={{ x, y }} />
-      </div>
+    <div className="boundaries flex">
+      <animated.div className="drag" {...bind()} style={{ x, y }}>
+        <animated.div {...bindL()} style={props}>
+          <div>
+            <animated.div style={{ color: movX ? 'red' : 'black' }}>
+              {props.x.to(th(0))}
+            </animated.div>
+            <animated.div style={{ color: movY ? 'blue' : 'black' }}>
+              {props.y.to(th(1))}
+            </animated.div>
+          </div>
+        </animated.div>
+      </animated.div>
     </div>
   )
 }

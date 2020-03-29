@@ -5,8 +5,14 @@ import Demo from './components/Demo'
 import examples from './components/examples-hooks'
 import './styles.css'
 
-// const DEBUG = false
-const DEBUG = 'wheel'
+let DEBUG = false
+DEBUG = 'multi-gesture'
+DEBUG = 'hover'
+// DEBUG = 'boundaries'
+// DEBUG = 'viewpager'
+// DEBUG = 'simple'
+// DEBUG = 'memo'
+DEBUG = 'wheel'
 
 ReactDOM.render(
   <DemoGrid fullscreen={!!DEBUG}>

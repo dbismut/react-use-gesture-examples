@@ -34,37 +34,52 @@ export default function Card() {
   const bind = useGesture(
     {
       onDragStart: () => setDrag(true),
-      onDrag: ({ offset: [x, y] }) =>
-        set({ x, y, rotateX: 0, rotateY: 0, scale: 1 }),
+      onDrag: ({ offset: [x, y] }) => {
+        console.log('dragging')
+        set({ x, y, rotateX: 0, rotateY: 0, scale: 1 })
+      },
       onDragEnd: () => setDrag(false),
-      onPinch: ({ offset: [d, a] }) => set({ zoom: d / 200, rotateZ: a }),
+      onPinch: ({ active, offset: [d, a] }) => {
+        console.log(active, d)
+        set({ zoom: d / 200, rotateZ: a, immediate: active })
+      },
       onMove: ({ xy: [px, py], dragging }) =>
         !dragging &&
         set({
-          rotateX: calcX(py, y.getValue()),
-          rotateY: calcY(px, x.getValue()),
+          rotateX: calcX(py, y.get()),
+          rotateY: calcY(px, x.get()),
           scale: 1.1,
         }),
-      onHover: ({ hovering }) =>
+      onHover: ({ hovering }) => {
         !hovering && set({ rotateX: 0, rotateY: 0, scale: 1 }),
-      onWheel: ({ offset: [, y] }) => setWheel({ wheelY: y }),
+          console.log({ hovering })
+      },
+      onWheel: ({ active, offset: [, y] }) => {
+        setWheel({ wheelY: y, immediate: active })
+      },
+      onMouseEnter: e => console.log('mouseover'),
     },
-    { domTarget, pointerEvents: true }
+    {
+      domTarget,
+      eventOptions: { passive: false },
+      // pinch: { distanceBounds: { min: 0, max: 100 }, rubberband: true },
+      // wheel: { bounds: { bottom: 0 }, rubberband: true },
+    }
   )
 
   React.useEffect(bind, [bind])
 
-  React.useEffect(() => {
-    root.current.addEventListener('gesturestart', e => e.preventDefault(), {
-      passive: false,
-    })
-    return () =>
-      root.current.removeEventListener(
-        'gesturestart',
-        e => e.preventDefault(),
-        { passive: false }
-      )
-  }, [])
+  // React.useEffect(() => {
+  //   root.current.addEventListener('gesturestart', e => e.preventDefault(), {
+  //     passive: false,
+  //   })
+  //   return () =>
+  //     root.current.removeEventListener(
+  //       'gesturestart',
+  //       e => e.preventDefault(),
+  //       { passive: false }
+  //     )
+  // }, [])
 
   return (
     <div ref={root} className="multi-gesture-card flex-content">
@@ -80,11 +95,11 @@ export default function Card() {
           rotateY,
           rotateZ,
         }}>
-        {/* <animated.div style={{ transform: wheelY.to(wheel) }}>
+        <animated.div style={{ transform: wheelY.to(wheel) }}>
           {imgs.map((img, i) => (
             <div key={i} style={{ backgroundImage: `url(${img})` }} />
           ))}
-        </animated.div> */}
+        </animated.div>
       </animated.div>
     </div>
   )

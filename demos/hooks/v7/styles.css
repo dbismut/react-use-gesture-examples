@@ -1,0 +1,19 @@
+.v7 > div {
+  border: 2px solid slateblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.v7 .drag {
+  width: 80px;
+  height: 80px;
+  background: hotpink;
+  border-radius: 16px;
+  touch-action: none;
+  position: absolute;
+}
+
+.react-dat-gui {
+  z-index: 1000;
+}

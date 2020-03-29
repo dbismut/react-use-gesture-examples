@@ -39,4 +39,32 @@ export default [
     name: 'hooks/three',
     title: 'Three JS',
   },
+  {
+    name: 'hooks/v7',
+    title: 'v7',
+  },
+  {
+    name: 'hooks/hover',
+    title: 'hover',
+  },
+  {
+    name: 'hooks/cody',
+    title: 'cody',
+  },
+  {
+    name: 'hooks/testing',
+    title: 'Testing suite',
+  },
+  {
+    name: 'hooks/scroll',
+    title: 'Scroll',
+  },
+  {
+    name: 'hooks/memo',
+    title: 'Memo',
+  },
+  {
+    name: 'hooks/touchaction',
+    title: 'Touchaction',
+  },
 ]
